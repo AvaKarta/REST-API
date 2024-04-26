@@ -23,7 +23,6 @@ server.listen(port, () => {
 });
 
 async function getDBConnnection() {
-  // Här skapas ett databaskopplings-objekt med inställningar för att ansluta till servern och databasen.
   return await mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -53,7 +52,6 @@ app.get("/users", async (req, res) => {
       let sql = `SELECT * FROM users`;
       let [results] = await connection.execute(sql);
 
-      //res.json() skickar resultat som JSON till klienten
       res.json(results);
       return;
     } catch (err) {
@@ -123,15 +121,14 @@ app.post("/users", async (req, res) => {
 
         let password = req.body.password;
 
-        const salt = await bcrypt.genSalt(10); // genererar ett salt till hashning
-        const hashedPassword = await bcrypt.hash(password, salt); //hashar lösenordet
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
 
         let [results] = await connection.execute(sql, [
           req.body.username,
           hashedPassword,
         ]);
 
-        //res.json() skickar resultat som JSON till klienten
         res.json(results);
         return;
       } catch (err) {
@@ -174,7 +171,6 @@ app.post("/login", async (req, res) => {
         res.json(token);
         return;
       } else {
-        // Skicka felmeddelande
         res.status(400).json({ error: "Invalid credentials" });
         return;
       }
@@ -214,8 +210,8 @@ app.put("/users/:id", async (req, res) => {
 
         let password = req.body.password;
 
-        const salt = await bcrypt.genSalt(10); // genererar ett salt till hashning
-        const hashedPassword = await bcrypt.hash(password, salt); //hashar lösenordet
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
 
         let [results] = await connection.execute(sql, [
           req.body.username,
@@ -223,7 +219,6 @@ app.put("/users/:id", async (req, res) => {
           req.params.id,
         ]);
 
-        //res.json() skickar resultat som JSON till klienten
         res.json(results);
         return;
       } catch (err) {

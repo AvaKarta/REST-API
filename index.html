@@ -7,20 +7,25 @@
   </head>
   <body>
     <h1>Documentation av Det här APIet</h1>
-    <p>GET / users - returnerar alla users om du är inloggad.</p>
     <p>
-      GET / users/{id} - returnerar användaren med samma ID om du är inloggad
+      GET / users - returnerar alla users om du är inloggad. Denna route kräver
+      ett giltigt bearer token i authorization header.
     </p>
     <p>
-      POST / users - skapar en ny användere till databasen om du är inloggad.
+      GET / users/{id} - returnerar användaren med samma ID som är angivet.
+      Denna route kräver ett giltigt bearer token i authorization header.
+    </p>
+    <p>
+      POST / users - skapar en ny användere till databasen.Denna route kräver
+      ett giltigt bearer token i authorization header.
       <br />
       Accepterar JSON object på formatet {"username":"unikt namn","password":""}
     </p>
     <p>
-      PUT / users/{id} - updaterar ett befintligt konto med det angivna ID om du
+      PUT / users/{id} - updaterar ett befintligt konto med det angivna ID.Denna
+      route kräver ett giltigt bearer token i authorization header.
       <br />
-      är inloggad. Accepterar JSON object på formatet {"username":"unikt
-      namn","password":""}
+      Accepterar JSON object på formatet {"username":"unikt namn","password":""}
     </p>
     <p>
       POST / login - loggar in på ett konto. Returnerar en JWT som används vid
