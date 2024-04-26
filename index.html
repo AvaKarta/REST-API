@@ -7,9 +7,25 @@
   </head>
   <body>
     <h1>Documentation av Det här APIet</h1>
-    <p>GET / users - returnerar alla users</p>
-    <p>GET / users/{id} - returnerar användaren med samma id</p>
-    <p>POST / users - skapar en användera till databasen</p>
-    <p>POST / login - loggar in på ett konto</p>
+    <p>GET / users - returnerar alla users om du är inloggad.</p>
+    <p>
+      GET / users/{id} - returnerar användaren med samma ID om du är inloggad
+    </p>
+    <p>
+      POST / users - skapar en ny användere till databasen om du är inloggad.
+      <br />
+      Accepterar JSON object på formatet {"username":"unikt namn","password":""}
+    </p>
+    <p>
+      PUT / users/{id} - updaterar ett befintligt konto med det angivna ID om du
+      <br />
+      är inloggad. Accepterar JSON object på formatet {"username":"unikt
+      namn","password":""}
+    </p>
+    <p>
+      POST / login - loggar in på ett konto. Returnerar en JWT som används vid
+      inloggning vid det routes som kräver det. <br />
+      Accepterar JSON object på formatet {"username":"","password":""}
+    </p>
   </body>
 </html>
